@@ -14,6 +14,10 @@ export class ProductsService {
     return createdProduct.save();
   }
 
+  async findAll(): Promise<Product[]> {
+    return this.productModel.find().exec();
+  }
+
   async findOne(id: string): Promise<Product> {
     return this.productModel.findById(id).exec();
   }
@@ -21,11 +25,11 @@ export class ProductsService {
   async update(id: string, updateProductDto: UpdateProductDto): Promise<Product> {
     return this.productModel.findByIdAndUpdate(id, updateProductDto, { new: true }).exec();
   }
+
+  async delete(id: string): Promise<Product> {
+    return this.productModel.findByIdAndDelete(id).exec();
+  }
 }
-
-
-
-
 
 
 
